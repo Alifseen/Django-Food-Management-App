@@ -4,3 +4,34 @@ pillow
 
 image = qrcode.make(url)
 image.save(qr.png)
+
+
+Create model with following columns
+category, name, description, price
+
+items(models.Model)
+meal charfield 1000 unique=True
+description charfield 2000
+price DecimalField max_digits 10 decimal_places=2
+
+mealtype = charfield 200 choices FOOD_TYPE
+RFOOD_TYPE = ((name, Name),(Name2, Name2))
+starter, salads, main dishes, desserts
+
+django.contrib.auth.models import User
+ched = ForiegnKey(User, on_delete=models.PROTECT)  ## CASCADE delets all the content by this user, to keep set to PROTECT, or SET_NULL to just remove the user to null
+
+
+status = IntegerField(choices=STATUS, default=1)
+STATUS = ((0, "Unavailable"),(1, "Available"))
+
+date_created = DateTimeField(auto_now_add=True)
+date_updated = DateTimeField(auto_now=True)
+
+
+def __str__
+return self.mean
+
+
+makemigrations
+migrate
