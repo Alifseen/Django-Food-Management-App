@@ -1,0 +1,6 @@
+Creating QR Code with Python
+qrcode
+pillow
+
+image = qrcode.make(url)
+image.save(qr.png)
