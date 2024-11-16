@@ -74,3 +74,81 @@ in html using jinja
 {{meals}}
 
 so context are dictionaries that html can access values from using keys in jinja
+
+
+
+
+in admin .py
+.model Meals
+
+class MenuItemAdmin(admin.ModelAdmin):
+list_display
+list_filter status
+search fields
+
+admin.site.register(Meals, MenuItemAdmin)
+
+createsuperuser
+
+add Items in the meals db using admin panel
+
+
+
+adding data to html dynamically using Jinja For Loops
+context = {}
+context["key"] = model variable  ## be sure to import the variable or class
+
+{% for meal in meals %}
+{{% meal.1 %}}  ## this displays the value in index 1
+{% endfor %}
+
+adding "_list" to a model such as "meals_list" will give you a list of all values in the model.
+So inside the above for loop, to access all column values we add another for loop
+{% fro row in item_list %}
+{{row.dish_name}}  ## this is the column name whose value we want
+{{row.ingredients}}
+{% endfor %}
+
+you need to edit the context as well.
+in method, add **kwargs
+in context variable make it super().get_context_data(**kwargs) so it can process arguments such _list
+
+
+instead of getting all the values from the database in the _list for loop. We will use conditionals to get relevant data only
+{% if row.meal_type == meal.0 %}  ## checks the whether the iterated items meal_type column value matches with the main loops meal type value
+{% endif %}
+
+to strikethrough the meals that are unavailable use if-else conditionals
+{% if row.status == 0 %}  ## 0 is unavailable in model
+add <del> tag arround the row.dishname
+{% else %}
+{% endif %}
+
+
+Adding dynamic links
+use <a href="{% url "name in urls.py" row.pk %}"></a>  pk is the primarykey
+
+change menudetail path in urls
+to have /<int:pk>
+
+since this page has access to the database model class, whatever name we click on, it has access to that dishes column values
+{{meals.dishname}}
+{{meals.ingredients}}
+{{meals.price}}
+
+
+
+Add a navigation menu, price and apply bootstrap
+paste base.html
+link index and menu page to base html
+{% entends 'base.html' %}
+{% block content %}
+{% endblock content %}
+
+add div class container
+add ul class list-group list-group-flush
+add class pt-5 to h2 names
+li for name   class list-group-item d-flex justify-content-between align-items-center border-0 pb-0
+li for ingredient   class list-group-item pt-0
+
+span class badg bg-primary rounded-pill {{row.price}}
