@@ -6,7 +6,8 @@
 </head>
 <body>
     <h1>Restaurant Menu</h1>
-    <h3>{{meals}}</h3>
-    <h4>{{Ingredients}}</h4>
+    {% for type in types %}
+        <h2>{{type.1}}</h2>
+    {% endfor %}
 </body>
 </html>

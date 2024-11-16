@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import generic
-from .models import Meals
+from .models import Meals, FOOD_TYPE
 
 
 ## Display menu as a list view class
@@ -10,7 +10,8 @@ class MealsList(generic.ListView):
 
     ## Usinng context manager and jinja to get data on html
     def get_context_data(self): ## Use this exact method name to overwrite the Listviews original method
-        context = {"meals":"Pizza", "Ingredients":["Pizza Bread", "Pizza Sauce"]}  ## Context needs to be a dictionary
+        context = {}
+        context["types"] = FOOD_TYPE
         return context
 
 
