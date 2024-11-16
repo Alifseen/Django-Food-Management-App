@@ -11,10 +11,10 @@
         {% for row in meals_list %}
             {% if row.dish_category == type.0 %}
                 {% if row.availability == 0 %}
-                    <h3><del>{{row.dish_name}}</del></h3>
+                    <a href="{% url 'meal_detail' row.pk %}"><h3><del>{{row.dish_name}}</del></h3></a>
                     <p>{{row.ingredients}}</p>
                 {% else %}
-                    <h3>{{row.dish_name}}</h3>
+                    <a href="{% url 'meal_detail' row.pk %}"><h3>{{row.dish_name}}</h3></a>
                     <p>{{row.ingredients}}</p>
                 {% endif %}
             {% endif %}
