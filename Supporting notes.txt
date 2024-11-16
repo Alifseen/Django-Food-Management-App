@@ -35,3 +35,42 @@ return self.mean
 
 makemigrations
 migrate
+
+
+
+
+Class Based views instead of function based views
+class based have less code
+
+django.views generic
+MenuList(generic.listview)
+MenuDetail(generic.DetailView)
+
+queryset = menu.objects.order_by("column")  ## connect model to the view
+template_name = html file name  ## connect view to the html
+
+model = menu
+template_name = "html file name"
+
+create templates directory with html files
+
+create urls.py
+django.url path
+. views
+urlpatterns = [path("", viewns.Menulist.as_view(), name="menulist)]  ## connect url to view
+
+go to urls.py in my site
+path("", include(appdirectoryname.urls)  ## connect app url to project
+
+
+
+
+context in django
+def get_context_data(self):
+context = {"meals":"pizza"}
+return context
+
+in html using jinja
+{{meals}}
+
+so context are dictionaries that html can access values from using keys in jinja
