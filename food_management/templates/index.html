@@ -10,8 +10,13 @@
         <h2>{{type.1}}</h2>
         {% for row in meals_list %}
             {% if row.dish_category == type.0 %}
-                <h3>{{row.dish_name}}</h3>
-                <p>{{row.ingredients}}</p>
+                {% if row.availability == 0 %}
+                    <h3><del>{{row.dish_name}}</del></h3>
+                    <p>{{row.ingredients}}</p>
+                {% else %}
+                    <h3>{{row.dish_name}}</h3>
+                    <p>{{row.ingredients}}</p>
+                {% endif %}
             {% endif %}
         {% endfor %}
     {% endfor %}
