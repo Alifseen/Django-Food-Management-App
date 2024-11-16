@@ -1,22 +1,33 @@
 {% extends 'base.html' %}
 {% block content %}
-<div>
+<div class="container">
     <h1>Restaurant Menu</h1>
+    <ul class="list-group list-group-flush">
     {% for type in types %}
-        <h2>{{type.1}}</h2>
+        <h2 class="pt-5">{{type.1}}</h2>
         {% for row in meals_list %}
             {% if row.dish_category == type.0 %}
                 {% if row.availability == 0 %}
-                    <a href="{% url 'meal_detail' row.pk %}"><h3><del>{{row.dish_name}}</del></h3></a>
-                    <p>{{row.ingredients}}</p>
-                    <span>${{row.price}}</span>
+                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 pb-0">
+                        <a href="{% url 'meal_detail' row.pk %}"><h3><del>{{row.dish_name}}</del></h3></a>
+                        <span class="badge bg-primary rounded-pill">${{row.price}}</span>
+                    </li>
+                    <li class="list-group-item pt-0">
+                        <p>{{row.ingredients}}</p>
+                    </li>
+
                 {% else %}
-                    <a href="{% url 'meal_detail' row.pk %}"><h3>{{row.dish_name}}</h3></a>
-                    <p>{{row.ingredients}}</p>
-                    <span>${{row.price}}</span>
+                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 pb-0">
+                        <a href="{% url 'meal_detail' row.pk %}"><h3>{{row.dish_name}}</h3></a>
+                        <span class="badge bg-primary rounded-pill">${{row.price}}</span>
+                    </li>
+                    <li class="list-group-item pt-0">
+                        <p>{{row.ingredients}}</p>
+                    </li>
                 {% endif %}
             {% endif %}
         {% endfor %}
     {% endfor %}
+    </ul>
 </div>
 {% endblock content %}
