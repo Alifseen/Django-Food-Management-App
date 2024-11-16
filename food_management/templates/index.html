@@ -8,6 +8,10 @@
     <h1>Restaurant Menu</h1>
     {% for type in types %}
         <h2>{{type.1}}</h2>
+        {% for row in meals_list %}
+            <h3>{{row.dish_name}}</h3>
+            <p>{{row.ingredients}}</p>
+        {% endfor %}
     {% endfor %}
 </body>
 </html>

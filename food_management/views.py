@@ -9,8 +9,8 @@ class MealsList(generic.ListView):
     template_name = "index.html"  ## connects view to html
 
     ## Usinng context manager and jinja to get data on html
-    def get_context_data(self): ## Use this exact method name to overwrite the Listviews original method
-        context = {}
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         context["types"] = FOOD_TYPE
         return context
 
